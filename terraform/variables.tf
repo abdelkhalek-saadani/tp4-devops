@@ -8,5 +8,5 @@ variable "app_version" {
 variable "app_port" {
   description = "External port for the web application"
   type        = number
-  default     = 8080
+  default     = 5000
 }
