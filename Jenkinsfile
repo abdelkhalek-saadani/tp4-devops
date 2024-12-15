@@ -21,12 +21,15 @@ pipeline {
             }
         }
 
-        stage('Terraform Cleanup') {
+        stage('Cleanup Existing Resources') {
             steps {
-                dir('terraform') {
-                    sh "terraform destroy -auto-approve -var='app_version=${APP_VERSION}' -target=docker_container.webapp || true"
-                }
+                script {
+                    sh '''
+                        docker ps -q --filter "publish=5000" | xargs -r docker stop
+                        docker ps -a -q --filter "publish=5000" | xargs -r docker rm
+                        '''
             }
+        }
         }
         
         stage('Terraform Init') {
