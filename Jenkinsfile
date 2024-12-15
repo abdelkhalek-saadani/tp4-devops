@@ -24,7 +24,7 @@ pipeline {
         stage('Terraform Cleanup') {
             steps {
                 dir('terraform') {
-                    sh "terraform destroy -auto-approve -var='app_version=${APP_VERSION}' || true"
+                    sh "terraform destroy -auto-approve -var='app_version=${APP_VERSION}' -target=docker_container.webapp || true"
                 }
             }
         }
