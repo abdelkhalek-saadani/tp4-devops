@@ -62,13 +62,13 @@ pipeline {
             echo "Deployment successful! Application version ${APP_VERSION} is now running."
             mail to: 'abdelkhalek.saadani@insat.ucar.tn',
              subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-             body: "The build ${env.BUILD_NUMBER} completed successfully.\nCheck details: ${env.BUILD_URL}"
+             body: "The build ${env.BUILD_NUMBER} completed successfully.\nCheck details: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a>"
         }
         failure {
             echo "Deployment failed. Please check the logs."
             mail to: 'abdelkhalek.saadani@insat.ucar.tn',
              subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-             body: "The build ${env.BUILD_NUMBER} failed.\nCheck details: ${env.BUILD_URL}"
+             body: "The build ${env.BUILD_NUMBER} failed.\nCheck details: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a>"
         }
         always {
             echo "Pipeline execution completed."
