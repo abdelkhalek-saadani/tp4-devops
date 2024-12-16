@@ -60,13 +60,13 @@ pipeline {
     post {
         success {
             echo "Deployment successful! Application version ${APP_VERSION} is now running."
-            mail to: 'abdelkhaleksaadani@insat.ucar.tn',
+            mail to: 'abdelkhalek.saadani@insat.ucar.tn',
              subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
              body: "The build ${env.BUILD_NUMBER} completed successfully.\nCheck details: ${env.BUILD_URL}"
         }
         failure {
             echo "Deployment failed. Please check the logs."
-            mail to: 'abdelkhaleksaadani@insat.ucar.tn',
+            mail to: 'abdelkhalek.saadani@insat.ucar.tn',
              subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
              body: "The build ${env.BUILD_NUMBER} failed.\nCheck details: ${env.BUILD_URL}"
         }
